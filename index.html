@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iraq's Digital Frontier: An ICT Market Infographic</title>
+    <title>Syed Mujtaba Ali: A Techno-Commercial Guru</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -97,18 +97,40 @@
     <header class="bg-white shadow-md sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-3">
           
-                
-              
-<div class="flex space-x-8">
+ <header class="bg-white shadow-md sticky top-0 z-50">
+  <nav class="container mx-auto px-6 py-3 flex items-center justify-between">
+    
+    <!-- Logo -->
+    <div class="text-lg font-bold">My Logo</div>
 
-                    <a href=https://tosyedmujtaba.github.io/Iraq/ class="hover:text-[#00A6ED]">My Innovative Value Propositions</a>
-                <a href=https://tosyedmujtaba.github.io/Iraq/ class="hover:text-[#00A6ED]">My USP & UVP </a>    
-                    <a href="#detailed-analysis" class="hover:text-[#00A6ED]">My B2B Marketing techniques</a>
-                    <a href="#ptt-analysis" class="hover:text-[#00A6ED]">My Products</a>
-                    <a href="#trends" class="hover:text-[#00A6ED]">My Publications</a>
-                    <a href="#contact" class="hover:text-[#00A6ED]">Iraq</a>
-<a href="#contact" class="hover:text-[#00A6ED]">Pakistan</a>
-                </div>
+    <!-- Hamburger Icon (visible on mobile only) -->
+    <button id="menu-btn" class="md:hidden text-2xl focus:outline-none">
+      ☰
+    </button>
+
+    <!-- Menu Items -->
+    <div id="menu" class="hidden absolute right-6 top-14 bg-white shadow-lg rounded-lg p-4 space-y-4 md:static md:flex md:space-x-8 md:space-y-0 md:bg-transparent md:shadow-none md:p-0">
+      <a href="https://tosyedmujtaba.github.io/Iraq/" class="hover:text-[#00A6ED]">My Innovative Value Propositions</a>
+      <a href="https://tosyedmujtaba.github.io/Iraq/" class="hover:text-[#00A6ED]">My USP & UVP</a>
+      <a href="#detailed-analysis" class="hover:text-[#00A6ED]">My B2B Marketing Techniques</a>
+      <a href="#ptt-analysis" class="hover:text-[#00A6ED]">My Products</a>
+      <a href="#trends" class="hover:text-[#00A6ED]">My Publications</a>
+      <a href="#contact" class="hover:text-[#00A6ED]">Iraq</a>
+      <a href="#contact" class="hover:text-[#00A6ED]">Pakistan</a>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Simple toggle for mobile menu
+  const menuBtn = document.getElementById('menu-btn');
+  const menu = document.getElementById('menu');
+
+  menuBtn.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+  });
+</script>
+
             </div>
         </nav>
     </header>
@@ -411,6 +433,7 @@
 
 </body>
 </html>
+
 
 
 
