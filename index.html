@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iraq's Digital Frontier: An ICT Market Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F5F5;
+            scroll-behavior: smooth;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .kpi-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+        }
+        .kpi-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #00A6ED;
+        }
+        .kpi-label {
+            font-size: 1rem;
+            color: #2F2F2F;
+            margin-top: 0.5rem;
+        }
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 900;
+            color: #2F2F2F;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: #555;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 5px solid #FFF;
+            border-bottom-color: #00A6ED;
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+        @keyframes rotation {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body class="text-[#2F2F2F]">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href=https://tosyedmujtaba.github.io/Iraq/ class="hover:text-[#00A6ED]">My Innovative Value Propositions</a>
+                <a href=https://tosyedmujtaba.github.io/Iraq/ class="hover:text-[#00A6ED]">My USP & UVP </a>    
+                    <a href="#detailed-analysis" class="hover:text-[#00A6ED]">My B2B Marketing techniques</a>
+                    <a href="#ptt-analysis" class="hover:text-[#00A6ED]">My Products</a>
+                    <a href="#trends" class="hover:text-[#00A6ED]">My Publications</a>
+                    <a href="#contact" class="hover:text-[#00A6ED]">Iraq</a>
+<a href="#contact" class="hover:text-[#00A6ED]">Pakistan</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Journey: A Tapestry of Growth and Vision</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light blue-gray for a clean look */
+            color: #334155; /* Darker gray for readability */
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+        }
+        .section-header {
+            font-size: 2.5rem; /* H1 size */
+            font-weight: 700;
+            color: #1e293b; /* Even darker gray for emphasis */
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 17px; /* Adjust based on icon size */
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #cbd5e1; /* Light gray line */
+            z-index: 0;
+        }
+        .timeline-item:last-child::before {
+            height: calc(100% - 2rem); /* Stop line before the end of the last item's content */
+        }
+        .timeline-icon {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            background-color: #3b82f6; /* Blue for icons */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            z-index: 1;
+            margin-right: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .timeline-content {
+            flex-grow: 1;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .timeline-content h3 {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+        .timeline-content p {
+            font-size: 1rem;
+            color: #475569;
+        }
+        /* Responsive adjustments for timeline */
+        @media (max-width: 768px) {
+            .timeline-item {
+                flex-direction: row;
+                text-align: left;
+            }
+            .timeline-item::before {
+                left: 17px; /* Keep line on left for small screens */
+            }
+            .timeline-icon {
+                margin-right: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-16 px-4 rounded-b-3xl shadow-lg">
+        <div class="container mx-auto text-center">
+            <!-- Profile Picture -->
+            <img src= pic2025imp.png
+                 onerror="this.onerror=null;this.src=pic2025imp.png;" 
+                 alt="Syed Mujtaba Ali" 
+                 class="w-36 h-36 rounded-full mx-auto mb-6 shadow-xl border-4 border-white object-cover">
+            
+            <h1 class="text-5xl font-extrabold mb-4 animate-fade-in-down">Syed Mujtaba Ali</h1>
+            <p class="text-xl font-light opacity-90 leading-relaxed animate-fade-in-up">
+                A Journey of Innovation, Leadership, and Impact in Telecommunications & ICT
+            </p>
+        </div>
+    </header>
+
+    <main class="container mx-auto py-16 px-4 md:px-8">
+
+        <!-- Introduction Section -->
+        <section id="introduction" class="mb-20">
+            <h2 class="section-header">Introduction</h2>
+            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-xl transition-transform duration-300 hover:scale-105">
+                <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                    Welcome to my personal narrative—a reflection on a professional journey marked by unwavering dedication, continuous innovation, and a profound commitment to driving transformative change. This page is a window into the experiences that have shaped me, the values that guide my path, and the aspirations that fuel my future endeavors. It's a story of growth, learning, and the relentless pursuit of making a meaningful impact in the dynamic world of telecommunications and information and communication technologies.
+                </p>
+                <p class="text-lg text-gray-700 leading-relaxed">
+                    From pioneering projects in early career roles to leading strategic digital transformations across multinational corporations, my journey has been a vibrant tapestry woven with challenges overcome and successes celebrated. Join me as I share the milestones that define my professional evolution and the vision that propels me forward.
+                </p>
+            </div>
+        </section>
+
+        <!-- Life Journey Timeline Section -->
+        <section id="timeline" class="mb-20">
+            <h2 class="section-header">Life Journey Timeline</h2>
+            <div class="relative pl-12">
+                <!-- Timeline Item 1: Punjab Information Technology Department -->
+                <div class="timeline-item">
+                    <div class="timeline-icon">🚀</div>
+                    <div class="timeline-content">
+                        <h3 class="text-xl">December 2004: Foundation in IT Transformation</h3>
+                        <p>Began my career at the Punjab Information Technology Department, where I developed a feasibility report projecting significant savings and fraud reduction for a district-level Metro Area Network. This early success laid the groundwork for my future in IT and telecom innovation.</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 2: National Accountability Bureau (NAB) -->
+                <div class="timeline-item">
+                    <div class="timeline-icon">⚖️</div>
+                    <div class="timeline-content">
+                        <h3 class="text-xl">March 2005: Pioneering Secure IT Infrastructure</h3>
+                        <p>Joined the National Accountability Bureau (NAB) as a Computer Consultant. Managed IT budgets, created Pakistan's first archiving system for criminal records, and designed a secure communication infrastructure, leading to substantial annual savings and recognition.</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 3: Saudi Pak Industrial & Agricultural Investment Co. (SPak) -->
+                <div class="timeline-item">
+                    <div class="timeline-icon">📈</div>
+                    <div class="timeline-content">
+                        <h3 class="text-xl">March 2007: Enhancing IT Standards and Efficiency</h3>
+                        <p>Transitioned to Manager IT at Saudi Pak Industrial & Agricultural Investment Co. (SPak), where I improved IT standards, reduced operational costs, implemented disaster recovery, and enhanced compliance efficiency, setting the stage for my product marketing career.</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 4: PTCL (Pakistan Telecommunication Company Limited) -->
+                <div class="timeline-item">
+                    <div class="timeline-icon">🌐</div>
+                    <div class="timeline-content">
+                        <h3 class="text-xl">2008-2014: Shaping B2B Product Marketing at PTCL</h3>
+                        <p>A pivotal period where I became a seasoned product marketer, leading cross-functional teams and developing robust Go-To-Market strategies. Key achievements include launching iSentry (generating $49.89M), Premium Internet Bandwidth, Domestic MPLS, PTCL Cloud Services, IPLC/Global MPLS, Business VPN, and orchestrating Safe City surveillance projects across Punjab, generating over $10M.</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 5: Zong (China Mobile Pakistan) -->
+                <div class="timeline-item">
+                    <div class="timeline-icon">📱</div>
+                    <div class="timeline-content">
+                        <h3 class="text-xl">2014-2021: Revolutionizing Enterprise Solutions at Zong</h3>
+                        <p>Joined Zong, a China Mobile subsidiary, to innovate and establish new revenue streams for the B2B segment. Established a dedicated strategic business unit, generating an impressive $75.6 million and contributing 81% to the enterprise solutions growth. Spearheaded the CPEC project, securing 11 out of 36 companies as clients, contributing $40.95 million. Monetized existing assets by converting MSCs into sheltered data centers, and earned "Most Committed Hero 2016" award.</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 6: Asiacell (Ooredoo Group Iraq) -->
+                <div class="timeline-item">
+                    <div class="timeline-icon">💡</div>
+                    <div class="timeline-content">
+                        <h3 class="text-xl">June 2021-Present: Spearheading Digital Transformation at Asiacell</h3>
+                        <p>Selected to lead the digital transformation of Asiacell’s B2B division. Despite no CapEx budget, grew my portfolio with a remarkable CAGR of 340% from zero to $3.42 million in three years, contributing 56.25% of the existing product portfolio. Launched numerous products single-handedly, built a System Integrator Ecosystem saving $2.5M, and onboarded major distinguished accounts. Currently spearheading the FTTB project with a $12M annual market potential and developing the Masarat-Asiacell Operational Model.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Intentions and Ambitions Section -->
+        <section id="intentions" class="mb-20">
+            <h2 class="section-header">Intentions and Ambitions</h2>
+            <div class="bg-gradient-to-br from-purple-500 to-pink-500 text-white p-8 md:p-12 rounded-2xl shadow-xl transform transition-all duration-500 hover:scale-105">
+                <p class="text-lg leading-relaxed mb-6">
+                    My future is driven by a profound commitment to leveraging my extensive experience and innovative spirit to create lasting impact. I aspire to continue leading transformational initiatives within the telecommunications and ICT sectors, shaping the future of digital connectivity and smart solutions. My ambition is to be at the forefront of technological advancement, fostering environments where creativity thrives and impactful solutions are born.
+                </p>
+                <p class="text-lg leading-relaxed mb-6">
+                    I am eager to contribute to the growth and evolution of dynamic markets, applying data-driven strategies and fostering strategic collaborations that yield significant economic and societal benefits. My goal is to continue mentoring emerging talent, building high-performing teams, and sharing knowledge to cultivate a culture of excellence and continuous improvement. I envision a future where my contributions help bridge technological gaps and unlock new opportunities for businesses and communities alike.
+                </p>
+                <p class="text-lg leading-relaxed font-semibold">
+                    "The future belongs to those who believe in the beauty of their dreams and are relentlessly committed to bringing them to life."
+                </p>
+            </div>
+        </section>
+
+        <!-- Core Values Section -->
+        <section id="values" class="mb-20">
+            <h2 class="section-header">Core Values</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Value Card 1: Innovation -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg flex flex-col items-center text-center transition-transform duration-300 hover:scale-105">
+                    <div class="text-5xl mb-4 text-blue-500">✨</div>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800">Innovation</h3>
+                    <p class="text-gray-600">
+                        I believe in challenging the status quo and continuously seeking novel solutions. From repurposing existing infrastructure to pioneering new services, innovation has always been the heartbeat of my professional endeavors.
+                    </p>
+                    <p class="mt-4 italic text-sm text-gray-500">"The only way to do great work is to love what you do, and to keep pushing boundaries."</p>
+                </div>
+
+                <!-- Value Card 2: Strategic Collaboration -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg flex flex-col items-center text-center transition-transform duration-300 hover:scale-105">
+                    <div class="text-5xl mb-4 text-green-500">🤝</div>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800">Strategic Collaboration</h3>
+                    <p class="text-gray-600">
+                        My successes are often a testament to the power of teamwork. I foster strong partnerships across diverse teams and with international entities, understanding that collective intelligence leads to superior outcomes.
+                    </p>
+                    <p class="mt-4 italic text-sm text-gray-500">"Coming together is a beginning; keeping together is progress; working together is success."</p>
+                </div>
+
+                <!-- Value Card 3: Adaptability & Resilience -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg flex flex-col items-center text-center transition-transform duration-300 hover:scale-105">
+                    <div class="text-5xl mb-4 text-yellow-500"> resilient</div>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800">Adaptability & Resilience</h3>
+                    <p class="text-gray-600">
+                        In dynamic environments, the ability to adapt and persevere is paramount. My journey has taught me to embrace change, navigate challenges with determination, and emerge stronger from every experience.
+                    </p>
+                    <p class="mt-4 italic text-sm text-gray-500">"It is not the strongest of the species that survives, nor the most intelligent, but the one most responsive to change."</p>
+                </div>
+
+                <!-- Value Card 4: Impact & Growth -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg flex flex-col items-center text-center transition-transform duration-300 hover:scale-105">
+                    <div class="text-5xl mb-4 text-red-500">🚀</div>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800">Impact & Growth</h3>
+                    <p class="text-gray-600">
+                        Every endeavor is approached with the aim of creating tangible, positive impact. My drive for continuous personal and professional growth ensures that I am always expanding my capabilities to achieve greater results.
+                    </p>
+                    <p class="mt-4 italic text-sm text-gray-500">"The true measure of a person is not where they stand in moments of comfort and convenience, but where they stand at times of challenge and controversy."</p>
+                </div>
+
+                <!-- Value Card 5: Mentorship & Knowledge Sharing -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg flex flex-col items-center text-center transition-transform duration-300 hover:scale-105">
+                    <div class="text-5xl mb-4 text-indigo-500"> mentor</div>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800">Mentorship & Knowledge Sharing</h3>
+                    <p class="text-gray-600">
+                        I am passionate about empowering others and believe in the power of shared knowledge. Contributing to the growth of individuals and teams is a fundamental aspect of my leadership philosophy.
+                    </p>
+                    <p class="mt-4 italic text-sm text-gray-500">"If I have seen further than others, it is by standing upon the shoulders of giants."</p>
+                </div>
+
+                 <!-- Value Card 6: Excellence & Dedication -->
+                 <div class="bg-white p-8 rounded-2xl shadow-lg flex flex-col items-center text-center transition-transform duration-300 hover:scale-105">
+                    <div class="text-5xl mb-4 text-cyan-500">🏆</div>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800">Excellence & Dedication</h3>
+                    <p class="text-gray-600">
+                        A commitment to excellence underpins all my work. I approach every project with meticulous attention to detail and unwavering dedication, striving for the highest standards in all outcomes.
+                    </p>
+                    <p class="mt-4 italic text-sm text-gray-500">"Perfection is not attainable, but if we chase perfection we can catch excellence."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Information Section -->
+        <section id="contact" class="mb-20 text-center">
+            <h2 class="section-header">Connect With Me</h2>
+            <div class="bg-blue-50 p-8 md:p-12 rounded-2xl shadow-xl transition-transform duration-300 hover:scale-105">
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    I am always open to engaging in discussions about the future of telecommunications, exploring potential collaborations, offering mentorship, or addressing any inquiries.
+                </p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-6">
+                    <a href="mailto:immujtaba@gmail.com" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:-translate-y-1">
+                        Email Me
+                    </a>
+                    <a href="https://www.linkedin.com/in/i-am-mujtaba/" target="_blank" class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:-translate-y-1">
+                        Connect on LinkedIn
+                    </a>
+                </div>
+                <p class="text-gray-500 mt-6 text-sm">
+                    For professional inquiries, please reach out via email.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8 px-4 text-center rounded-t-3xl shadow-inner">
+        <div class="container mx-auto">
+            <p>&copy; 2024 Syed Mujtaba Ali. All rights reserved.</p>
+            <p class="text-sm mt-2">Designed with passion and vision.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
