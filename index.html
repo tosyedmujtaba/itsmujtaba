@@ -94,10 +94,7 @@
 </head>
 <body class="text-[#2F2F2F]">
 
-    <header class="bg-white shadow-md sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-3">
-          
- <header class="bg-white shadow-md sticky top-0 z-50">
+   <header class="bg-white shadow-md sticky top-0 z-50">
   <nav class="container mx-auto px-6 py-3 flex items-center justify-between">
     
     <!-- Logo -->
@@ -120,6 +117,16 @@
     </div>
   </nav>
 </header>
+
+<script>
+  // Simple toggle for mobile menu
+  const menuBtn = document.getElementById('menu-btn');
+  const menu = document.getElementById('menu');
+
+  menuBtn.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+  });
+</script>
 
 <script>
   // Simple toggle for mobile menu
@@ -433,6 +440,7 @@
 
 </body>
 </html>
+
 
 
 
