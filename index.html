@@ -92,31 +92,82 @@
         }
     </style>
 </head>
-<body class="text-[#2F2F2F]">
+<header class="bg-white shadow-md sticky top-0 z-50">
+  <nav class="container mx-auto px-6 py-3">
+    <div class="flex items-center justify-between">
+      <!-- Brand (Thumbs Up) -->
+      <a href="/" class="text-2xl">👍</a>
 
-   <header class="bg-white shadow-md sticky top-0 z-50">
-  <nav class="container mx-auto px-6 py-3 flex items-center justify-between">
-    
-    <!-- Logo -->
-    <div class="text-lg font-bold"> </div>
+      <!-- Mobile toggle -->
+      <button
+        id="menu-btn"
+        class="md:hidden p-2"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Open menu"
+      >
+        ☰
+      </button>
 
-    <!-- Hamburger Icon (visible on mobile only) -->
-    <button id="menu-btn" class="md:hidden text-2xl focus:outline-none">
-      ☰
-    </button>
+      <!-- Desktop menu -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="https://tosyedmujtaba.github.io/Iraq/" class="hover:text-[#00A6ED]">My Innovative Value Propositions</a>
+        <a href="https://tosyedmujtaba.github.io/Iraq/" class="hover:text-[#00A6ED]">My USP & UVP</a>
+        <a href="#detailed-analysis" class="hover:text-[#00A6ED]">My B2B Marketing Techniques</a>
+        <a href="#ptt-analysis" class="hover:text-[#00A6ED]">My Products</a>
+        <a href="#trends" class="hover:text-[#00A6ED]">My Publications</a>
+        <a href="#contact" class="hover:text-[#00A6ED]">Iraq</a>
+        <a href="#contact" class="hover:text-[#00A6ED]">Pakistan</a>
+      </div>
+    </div>
 
-    <!-- Menu Items -->
-    <div id="menu" class="hidden absolute right-6 top-14 bg-white shadow-lg rounded-lg p-4 space-y-4 md:static md:flex md:space-x-8 md:space-y-0 md:bg-transparent md:shadow-none md:p-0">
-      <a href="https://tosyedmujtaba.github.io/Iraq/" class="hover:text-[#00A6ED]">My Innovative Value Propositions</a>
-      <a href="https://tosyedmujtaba.github.io/Iraq/" class="hover:text-[#00A6ED]">My USP & UVP</a>
-      <a href="#detailed-analysis" class="hover:text-[#00A6ED]">My B2B Marketing Techniques</a>
-      <a href="#ptt-analysis" class="hover:text-[#00A6ED]">My Products</a>
-      <a href="#trends" class="hover:text-[#00A6ED]">My Publications</a>
-      <a href="#contact" class="hover:text-[#00A6ED]">Iraq</a>
-      <a href="#contact" class="hover:text-[#00A6ED]">Pakistan</a>
+    <!-- Mobile dropdown (right-aligned, vertical) -->
+    <div
+      id="mobile-menu"
+      class="hidden md:hidden absolute right-6 mt-2 w-72 bg-white rounded-lg shadow-lg border"
+      role="menu"
+    >
+      <div class="flex flex-col py-3">
+        <a href="https://tosyedmujtaba.github.io/Iraq/" class="px-4 py-2 hover:bg-gray-50 hover:text-[#00A6ED]" role="menuitem">My Innovative Value Propositions</a>
+        <a href="https://tosyedmujtaba.github.io/Iraq/" class="px-4 py-2 hover:bg-gray-50 hover:text-[#00A6ED]" role="menuitem">My USP & UVP</a>
+        <a href="#detailed-analysis" class="px-4 py-2 hover:bg-gray-50 hover:text-[#00A6ED]" role="menuitem">My B2B Marketing Techniques</a>
+        <a href="#ptt-analysis" class="px-4 py-2 hover:bg-gray-50 hover:text-[#00A6ED]" role="menuitem">My Products</a>
+        <a href="#trends" class="px-4 py-2 hover:bg-gray-50 hover:text-[#00A6ED]" role="menuitem">My Publications</a>
+        <a href="#contact" class="px-4 py-2 hover:bg-gray-50 hover:text-[#00A6ED]" role="menuitem">Iraq</a>
+        <a href="#contact" class="px-4 py-2 hover:bg-gray-50 hover:text-[#00A6ED]" role="menuitem">Pakistan</a>
+      </div>
     </div>
   </nav>
 </header>
+
+<script>
+  const btn = document.getElementById('menu-btn');
+  const panel = document.getElementById('mobile-menu');
+
+  function closeMenu() {
+    panel.classList.add('hidden');
+    btn.setAttribute('aria-expanded', 'false');
+  }
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = panel.classList.toggle('hidden');
+    btn.setAttribute('aria-expanded', String(!open));
+  });
+
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (!panel.classList.contains('hidden') && !panel.contains(e.target) && e.target !== btn) {
+      closeMenu();
+    }
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+</script>
+
 
 <script>
   // Simple toggle for mobile menu
@@ -440,6 +491,7 @@
 
 </body>
 </html>
+
 
 
 
