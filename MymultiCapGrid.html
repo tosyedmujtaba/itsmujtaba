@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Grid of My Capabilities</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light blue-gray for a clean look */
+            color: #334155; /* Darker gray for readability */
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+        }
+        .section-header {
+            font-size: 2.5rem; /* H1 size */
+            font-weight: 700;
+            color: #1e293b; /* Even darker gray for emphasis */
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .role-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            height: 100%; /* Ensures cards in a row have equal height */
+        }
+        .role-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 20px rgba(0, 0, 0, 0.15);
+        }
+        .role-icon {
+            font-size: 3rem;
+            color: #3b82f6;
+            margin-bottom: 1rem;
+        }
+        .role-card h3 {
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        .role-card p {
+            font-size: 0.95rem;
+            color: #475569;
+        }
+        .section-intro-text {
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    
+    <main class="container mx-auto px-4 py-16">
+        <section id="core-roles" class="mb-20">
+            <h2 class="section-header">A Grid of My Capabilities</h2>
+            <p class="text-lg text-gray-700 leading-relaxed section-intro-text">
+                My professional journey in B2B Telecom/ICT has equipped me with a versatile skill set, allowing me to excel in nine distinct, yet interconnected, functional roles. These roles capture my multi-dimensional approach to connecting technology, strategy, and commercialization to drive growth and innovation.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <div class="role-card">
+                    <i class="role-icon uil uil-sitemap"></i>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2">1. Product Portfolio Architect</h3>
+                    <p class="text-gray-700 mb-2">Designs, structures, and manages ICT/fixed product portfolios (cloud, data center, cyber, IoT, connectivity) to ensure lifecycle alignment and profitability.</p>
+                </div>
+
+                <div class="role-card">
+                    <i class="role-icon uil uil-bullseye"></i>
+                    <h3 class="text-xl font-bold text-green-800 mb-2">2. Go-to-Market Strategist & Executor</h3>
+                    <p class="text-gray-700 mb-2">Converts product concepts into market traction through GTM campaigns, positioning, and adoption strategies.</p>
+                </div>
+
+                <div class="role-card">
+                    <i class="role-icon uil uil-users-alt"></i>
+                    <h3 class="text-xl font-bold text-yellow-800 mb-2">3. Strategic Alliance Builder</h3>
+                    <p class="text-gray-700 mb-2">Creates partnerships, alliances, and M&A strategies to expand capabilities and access global ecosystems.</p>
+                </div>
+
+                <div class="role-card">
+                    <i class="role-icon uil uil-chart-line"></i>
+                    <h3 class="text-xl font-bold text-red-800 mb-2">4. Connectivity Monetizer</h3>
+                    <p class="text-gray-700 mb-2">Transforms telco infrastructure (fiber, subsea cables, POPs, colocation) into commercialized B2B and wholesale services.</p>
+                </div>
+
+                <div class="role-card">
+                    <i class="role-icon uil uil-lightbulb-alt"></i>
+                    <h3 class="text-xl font-bold text-purple-800 mb-2">5. Value Proposition Creator</h3>
+                    <p class="text-gray-700 mb-2">Crafts customer-centric propositions that translate complex ICT into tangible business benefits.</p>
+                </div>
+
+                <div class="role-card">
+                    <i class="role-icon uil uil-usd-circle"></i>
+                    <h3 class="text-xl font-bold text-indigo-800 mb-2">6. Commercial & Pricing Modeler</h3>
+                    <p class="text-gray-700 mb-2">Creates competitive pricing, packaging, and ROI-driven business models to maximize profitability.</p>
+                </div>
+
+                <div class="role-card">
+                    <i class="role-icon uil uil-rocket"></i>
+                    <h3 class="text-xl font-bold text-cyan-800 mb-2">7. Sales Enablement Catalyst</h3>
+                    <p class="text-gray-700 mb-2">Equips sales teams with tools, narratives, and incentives to win in enterprise ICT markets.</p>
+                </div>
+
+                <div class="role-card">
+                    <i class="role-icon uil uil-megaphone"></i>
+                    <h3 class="text-xl font-bold text-lime-800 mb-2">8. ICT Marketer</h3>
+                    <p class="text-gray-700 mb-2">Markets ICT solutions (cloud, managed services, cyber, IoT) to reposition telcos as enterprise solution providers.</p>
+                </div>
+
+                <div class="role-card">
+                    <i class="role-icon uil uil-sync"></i>
+                    <h3 class="text-xl font-bold text-rose-800 mb-2">9. Telco-to-TechCo Transformer</h3>
+                    <p class="text-gray-700 mb-2">Reshapes legacy telcos into ICT-driven TechCos by introducing new verticals, revenue streams, and digital ecosystems.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="summary-mind-map" class="mb-20">
+            <div class="bg-gradient-to-r from-blue-100 to-indigo-100 rounded-2xl shadow-lg p-8 md:p-12">
+                <h3 class="text-2xl font-bold text-blue-900 mb-4 text-center">⚡ My Mind Map: A Multi-Positional B2B Playmaker</h3>
+                <p class="text-lg text-gray-800 mb-8 text-center">
+                    I am not defined by a single title — I am a multi-positional B2B playmaker. My skills fall into four key strategic pillars.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="flex items-start bg-white p-6 rounded-lg shadow-md">
+                        <i class="uil uil-sitemap text-3xl text-blue-600 mr-4"></i>
+                        <div>
+                            <h4 class="font-bold text-lg text-gray-900">Architect</h4>
+                            <p class="text-gray-700">Portfolio, GTM, and Pricing</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start bg-white p-6 rounded-lg shadow-md">
+                        <i class="uil uil-rocket text-3xl text-green-600 mr-4"></i>
+                        <div>
+                            <h4 class="font-bold text-lg text-gray-900">Activator</h4>
+                            <p class="text-gray-700">Sales Enablement and Value Propositions</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start bg-white p-6 rounded-lg shadow-md">
+                        <i class="uil uil-users-alt text-3xl text-yellow-600 mr-4"></i>
+                        <div>
+                            <h4 class="font-bold text-lg text-gray-900">Expander</h4>
+                            <p class="text-gray-700">Alliances and Connectivity Monetization</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start bg-white p-6 rounded-lg shadow-md">
+                        <i class="uil uil-sync text-3xl text-rose-600 mr-4"></i>
+                        <div>
+                            <h4 class="font-bold text-lg text-gray-900">Transformer</h4>
+                            <p class="text-gray-700">ICT Marketer and Telco-to-TechCo Change Agent</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact" class="mb-20 text-center">
+            <h2 class="section-header">Connect With Me</h2>
+            <div class="bg-blue-50 p-8 md:p-12 rounded-2xl shadow-xl transition-transform duration-300 hover:scale-105">
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    I am always open to engaging in discussions about the future of telecommunications, exploring potential collaborations, offering mentorship, or addressing any inquiries.
+                </p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-6">
+                    <a href="mailto:immujtaba@gmail.com" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:-translate-y-1">
+                        Email Me
+                    </a>
+                    <a href="https://tosyedmujtaba.github.io/itsmujtaba/" target="_blank" class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:-translate-y-1">
+                        Home
+                    </a>
+                </div>
+                <p class="text-gray-500 mt-6 text-sm">
+                    For professional inquiries, please reach out via email.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8 px-4 text-center rounded-t-3xl shadow-inner">
+        <div class="container mx-auto">
+            <p>&copy; 2024 Syed Mujtaba Ali. All rights reserved.</p>
+            <p class="text-sm mt-2">Designed with passion and vision.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+```
