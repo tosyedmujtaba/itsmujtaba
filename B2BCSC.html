@@ -13,6 +13,8 @@
             font-family: 'Inter', sans-serif;
             background-color: #0d1117; /* Dark background for command center feel */
             color: #e5e7eb;
+            /* Ensure footer visibility */
+            padding-bottom: 7rem; 
         }
         /* Custom class for the Ooredoo Red accent */
         .accent-red {
@@ -225,16 +227,15 @@
                 <p class="text-xs text-gray-500">System Tags: CRM → WFM → OSS → CBS</p>
             </div>
 
-            <!-- SLA Compliance -->
+            <!-- 🛑 DYNAMIC GRAPH: Real-Time Latency Monitor -->
             <div class="md:col-span-2 p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
-                <h3 class="text-lg font-semibold text-accent-red">SLA Compliance & Insight</h3>
-                <p class="text-4xl font-extrabold text-green-400 mt-2">85%</p>
-                <p class="text-sm text-gray-400">Orders Activated Within SLA</p>
-                <div class="mt-3 text-sm">
-                    <p class="font-bold">Insight: "85% of Orders Activated Within SLA."</p>
-                    <p class="text-xs text-red-400">Top Bottleneck: Feasibility Stage (Avg TAT: 1.5 Days)</p>
-                </div>
+                <h3 class="text-lg font-semibold text-accent-red">Real-Time Activation Latency (ms)</h3>
+                <p class="text-sm text-gray-400">Average system response time for key order tasks.</p>
+                <!-- Canvas for the moving graph -->
+                <canvas id="latencyChart" class="w-full h-32 mt-2"></canvas>
+                <p id="currentLatency" class="text-center text-sm font-bold mt-1 text-white">Current Latency: 0ms</p>
             </div>
+            <!-- 🛑 END DYNAMIC GRAPH -->
 
             <!-- Orders by Status -->
             <div class="md:col-span-4 p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
@@ -533,15 +534,55 @@
 
     </main>
 
+    <!-- Footer / Creator Signature Block -->
+    <footer class="mt-8 py-4 bg-[#161b22] border-t border-gray-1000">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+            <!-- Left Side: Conceptualization & Contact -->
+            <div class="mb-4 md:mb-0 text-center md:text-left">
+                <p class="text-xs italic font-light">
+                    🧠 Conceptualized & Developed by <span class="text-accent-red font-semibold">Mujtaba Ali</span>
+                </p>
+                <p class="mt-1 text-xs max-w-2x2">
+                   This dashboard a brainchild of Mujtaba Ali is OneView Control Center of <span class="text-accent-red font-semibold"> Customer Sales Journey ecosystem</span>, integrating data from multiple sources Salesforce, CRM, CBS, HPSM, ITSM, and Microsoft BWF to deliver a unified commercial and operational view. It’s designed to bridge business intent with enterprise system execution, aligning sales, service, and operational layers into one digital narrative.
+
+For <span class="text-accent-red font-semibold"> Telecom Operators </span> strengthening their <span class="text-accent-red font-semibold"> Lead-to-Cash digital spine </span>, contact me as I will take full ownership of customization, working directly with your BSS, OSS, IT, and CRM teams , from concept to deployment , ensuring precision, alignment, and delivery at scale.
+                </p>
+                <p class="mt-2 text-xs">
+                    📧 Contact: <a href="mailto:immujtaba@gmail.com" class="text-blue-400 hover:text-blue-300">immujtaba@gmail.com</a>
+                </p>
+            </div>
+
+            <!-- Right Side: Ownership & Placeholder -->
+            <div class="flex items-center space-x-3 mt-4 md:mt-0">
+                <div class="text-right">
+                    <!-- p class="text-white font-bold text-base">Ownership: Mujtaba Ali</p>
+                    
+                </div>
+                <!-- Placeholder for the headshot, using initials -->
+                <div class="h-12 w-12 bg-gray-600 rounded-full flex items-center justify-center text-2xl font-bold text-white border-2 border-accent-red">
+                   <img src="pic2025imp.png"
+                  onerror="this.onerror=null;this.src='pic2025imp.png';"
+                  alt="MA"
+ 
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const tabButtons = document.querySelectorAll('.tab-button');
             const pages = document.querySelectorAll('.dashboard-page');
             const mainTitle = document.querySelector('h1');
+            let latencyInterval = null; // To hold the interval for the dynamic graph
 
             // Set initial state for tabs and pages
             const setActiveTab = (targetId) => {
-                let currentTagline = "";
+                // Clear any existing real-time intervals when switching tabs
+                if (latencyInterval) {
+                    clearInterval(latencyInterval);
+                    latencyInterval = null;
+                }
 
                 // 1. Deactivate all buttons and hide all pages
                 tabButtons.forEach(button => {
@@ -550,9 +591,6 @@
                 });
                 pages.forEach(page => {
                     page.classList.add('hidden');
-                    if (page.id === targetId) {
-                        currentTagline = page.getAttribute('data-tagline');
-                    }
                 });
 
                 // 2. Activate the selected button
@@ -567,9 +605,11 @@
                 if (activePage) {
                     activePage.classList.remove('hidden');
                 }
-
-                // 4. Update the main header tagline (optional but cool infographic feature)
-                // Note: I removed the tagline from the main title area in HTML body and will rely on the page's inner content for the narrative.
+                
+                // 4. If the active tab is 'order-to-activation', start the dynamic graph
+                if (targetId === 'order-to-activation') {
+                    startLatencyChart();
+                }
             };
 
             // Event listeners for buttons
@@ -582,6 +622,142 @@
 
             // Set initial active tab (Overview)
             setActiveTab('overview');
+
+
+            // =========================================================================
+            // 🛑 Dynamic Graph Logic (Real-Time Activation Latency)
+            // =========================================================================
+
+            function startLatencyChart() {
+                const canvas = document.getElementById('latencyChart');
+                if (!canvas) return; // Exit if canvas isn't present
+                
+                const ctx = canvas.getContext('2d');
+                
+                // Set canvas size dynamically for responsiveness (important)
+                const container = canvas.parentElement;
+                canvas.width = container.offsetWidth;
+                canvas.height = 128; // Fixed height
+                
+                const maxDataPoints = 40; // Number of points to show on the screen
+                let latencyData = Array(maxDataPoints).fill(0); // Initialize with zero latency
+                let currentLatencyEl = document.getElementById('currentLatency');
+
+                // Configuration
+                const lineColor = '#34d399'; // Green-400
+                const dangerColor = '#f87171'; // Red-400
+                const warningThreshold = 250; // Milliseconds
+                const dangerThreshold = 400; // Milliseconds
+                const maxLatencyScale = 500; // Max Y-axis scale
+
+                function drawChart() {
+                    // Clear the canvas
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                    // Draw Background Gradients (Simulated Grid/Zones)
+                    const height = canvas.height;
+                    const width = canvas.width;
+
+                    // Danger Zone (400ms to 500ms) - Light red fill
+                    ctx.fillStyle = 'rgba(248, 113, 113, 0.1)';
+                    const dangerY = height * (1 - (dangerThreshold / maxLatencyScale));
+                    ctx.fillRect(0, 0, width, dangerY);
+
+                    // Warning Zone (250ms to 400ms) - Light yellow fill
+                    ctx.fillStyle = 'rgba(251, 191, 36, 0.1)';
+                    const warningY = height * (1 - (warningThreshold / maxLatencyScale));
+                    ctx.fillRect(0, dangerY, width, warningY - dangerY);
+                    
+                    // Normal Zone (0ms to 250ms) - Transparent
+                    // No fill needed
+
+                    // Draw Threshold Lines
+                    ctx.strokeStyle = 'rgba(251, 191, 36, 0.5)'; // Yellow dotted line
+                    ctx.setLineDash([5, 5]);
+                    ctx.beginPath();
+                    ctx.moveTo(0, warningY);
+                    ctx.lineTo(width, warningY);
+                    ctx.stroke();
+
+                    ctx.strokeStyle = 'rgba(248, 113, 113, 0.7)'; // Red solid line
+                    ctx.setLineDash([0, 0]); // Solid line
+                    ctx.beginPath();
+                    ctx.moveTo(0, dangerY);
+                    ctx.lineTo(width, dangerY);
+                    ctx.stroke();
+
+                    
+                    // Draw the Line Data
+                    ctx.beginPath();
+                    ctx.lineWidth = 2;
+                    ctx.setLineDash([]); // Reset to solid line for data
+                    
+                    let isDanger = false;
+
+                    for (let i = 0; i < latencyData.length; i++) {
+                        const x = (i / (maxDataPoints - 1)) * width;
+                        const y = height * (1 - (latencyData[i] / maxLatencyScale));
+                        
+                        if (i === 0) {
+                            ctx.moveTo(x, y);
+                        } else {
+                            ctx.lineTo(x, y);
+                        }
+
+                        // Determine the line color based on the last point
+                        if (i === latencyData.length - 1 && latencyData[i] > dangerThreshold) {
+                            isDanger = true;
+                        }
+                    }
+                    
+                    ctx.strokeStyle = isDanger ? dangerColor : lineColor;
+                    ctx.stroke();
+
+                    // Update current latency display
+                    if (currentLatencyEl) {
+                        const lastValue = latencyData[latencyData.length - 1];
+                        currentLatencyEl.textContent = `Current Latency: ${lastValue.toFixed(0)}ms`;
+                        currentLatencyEl.classList.remove('text-green-400', 'text-yellow-400', 'text-red-400');
+                        if (lastValue > dangerThreshold) {
+                             currentLatencyEl.classList.add('text-red-400');
+                        } else if (lastValue > warningThreshold) {
+                            currentLatencyEl.classList.add('text-yellow-400');
+                        } else {
+                            currentLatencyEl.classList.add('text-green-400');
+                        }
+                    }
+                }
+
+                function generateNewData() {
+                    // Shift all points to the left
+                    latencyData.shift();
+
+                    // Generate a new, realistic point
+                    const lastValue = latencyData[latencyData.length - 1] || 150;
+                    
+                    // Apply slight fluctuation (random walk)
+                    let newValue = lastValue + (Math.random() - 0.5) * 50; 
+                    
+                    // Clamp to realistic min/max
+                    newValue = Math.min(Math.max(newValue, 100), 450); 
+                    
+                    // Occasionally spike the data to show a problem (for drama)
+                    if (Math.random() < 0.05) {
+                        newValue = Math.max(newValue, 400 + Math.random() * 50); 
+                    }
+
+                    latencyData.push(newValue);
+                    drawChart();
+                }
+
+                // Start the animation loop (updates every 2 seconds to simulate "minutes basis" impact)
+                latencyInterval = setInterval(generateNewData, 2000); 
+
+                // Ensure the chart draws correctly on window resize
+                window.addEventListener('resize', drawChart); 
+            }
+            // =========================================================================
+            
         });
     </script>
 </body>
