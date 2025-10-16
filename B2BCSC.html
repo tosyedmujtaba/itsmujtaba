@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B2B Digital Journey Command Center</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter Font -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117; /* Dark background for command center feel */
+            color: #e5e7eb;
+        }
+        /* Custom class for the Ooredoo Red accent */
+        .accent-red {
+            background-color: #ef4444; /* Tailwind red-500 */
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'accent-red': '#ef4444',
+                        'card-bg': '#161b22',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen">
+
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 bg-[#0d1117] bg-opacity-95 backdrop-blur-sm shadow-xl z-50">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div class="flex items-center justify-between flex-wrap">
+                <h1 class="text-2xl font-bold text-white mr-6">
+                    B2B Digital Journey Command Center
+                </h1>
+
+                <!-- Tabs/Navigation -->
+                <nav class="flex space-x-2 overflow-x-auto py-2">
+                    <button data-target="overview" class="tab-button active-tab text-sm font-medium px-3 py-2 rounded-full transition-colors duration-200">
+                        Overview
+                    </button>
+                    <button data-target="sales" class="tab-button text-sm font-medium px-3 py-2 rounded-full transition-colors duration-200">
+                        Sales Pipeline
+                    </button>
+                    <button data-target="order-to-activation" class="tab-button text-sm font-medium px-3 py-2 rounded-full transition-colors duration-200">
+                        Order-to-Activation
+                    </button>
+                    <button data-target="billing-revenue" class="tab-button text-sm font-medium px-3 py-2 rounded-full transition-colors duration-200">
+                        Billing & Cash
+                    </button>
+                    <button data-target="self-care-cx" class="tab-button text-sm font-medium px-3 py-2 rounded-full transition-colors duration-200">
+                        Self-Care & CX
+                    </button>
+                    <button data-target="marketplace" class="tab-button text-sm font-medium px-3 py-2 rounded-full transition-colors duration-200">
+                        Marketplace
+                    </button>
+                    <button data-target="digital-product" class="tab-button text-sm font-medium px-3 py-2 rounded-full transition-colors duration-200">
+                        Digital Product
+                    </button>
+                    <button data-target="cost-to-serve" class="tab-button text-sm font-medium px-3 py-2 rounded-full transition-colors duration-200">
+                        Cost & Impact
+                    </button>
+                    <button data-target="customer-360" class="tab-button text-sm font-medium px-3 py-2 rounded-full transition-colors duration-200">
+                        Customer 360
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- Tab Content Containers (All pages hidden except the active one) -->
+        
+        <!-- ========================================================================= -->
+        <!-- 🔷 Page 1: Executive Overview (Landing Dashboard) -->
+        <!-- ========================================================================= -->
+        <div id="overview" class="dashboard-page grid gap-6 md:grid-cols-4" data-tagline="One dashboard, one truth — from funnel to bill.">
+            <div class="md:col-span-4 text-center pb-4">
+                <p class="text-xl font-light text-gray-400">Objective: One-screen 360° view of business health.</p>
+                <p class="text-sm font-extrabold text-white mt-2">ONE DASHBOARD, ONE TRUTH — FROM FUNNEL TO BILL.</p>
+            </div>
+
+            <!-- Pipeline Funnel -->
+            <div class="md:col-span-2 p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-lg font-semibold text-accent-red">Pipeline → Billing Funnel</h3>
+                <div class="grid grid-cols-2 gap-4 mt-3">
+                    <div class="flex flex-col">
+                        <span class="text-3xl font-bold">12,500</span>
+                        <span class="text-sm text-gray-400">Active Services</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-3xl font-bold text-green-400">45%</span>
+                        <span class="text-sm text-gray-400">Conversion % (Lead→Order)</span>
+                    </div>
+                </div>
+                <div class="mt-4 text-sm">
+                    <p class="mt-1">Time-to-Quote: <span class="text-yellow-400">2.1 Days</span></p>
+                    <p>Time-to-Revenue: <span class="text-yellow-400">8.5 Days</span></p>
+                </div>
+            </div>
+
+            <!-- Revenue Snapshot -->
+            <div class="md:col-span-2 p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-lg font-semibold text-accent-red">Revenue Snapshot</h3>
+                <div class="grid grid-cols-3 gap-4 mt-3">
+                    <div class="text-center">
+                        <span class="text-2xl font-bold">$12.4M</span>
+                        <span class="block text-xs text-gray-400">MRR</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="text-2xl font-bold text-green-400">115%</span>
+                        <span class="block text-xs text-gray-400">NRR (Net Retention)</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="text-2xl font-bold text-red-400">1.2%</span>
+                        <span class="block text-xs text-gray-400">Churn %</span>
+                    </div>
+                </div>
+                <p class="mt-4 text-sm text-gray-400">Billed vs Collected Ratio: <span class="text-white">98.5%</span></p>
+            </div>
+
+            <!-- Automation & Experience KPIs -->
+            <div class="p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-lg font-semibold">Automation KPIs</h3>
+                <p class="mt-2 text-3xl font-bold text-purple-400">72%</p>
+                <p class="text-sm text-gray-400">Zero-Touch Order %</p>
+                <p class="mt-2 text-sm">Manual vs Auto Orders: <span class="text-white">1:4</span></p>
+            </div>
+            <div class="p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-lg font-semibold">Experience KPIs</h3>
+                <p class="mt-2 text-3xl font-bold">45</p>
+                <p class="text-sm text-gray-400">NPS (Net Promoter Score)</p>
+                <p class="mt-2 text-sm">Self-Care Adoption: <span class="text-white">88%</span></p>
+            </div>
+
+            <!-- Quick Insight Tiles -->
+            <div class="md:col-span-2 p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-lg font-semibold">Quick Insight Tiles</h3>
+                <ul class="mt-2 text-sm space-y-2">
+                    <li class="flex justify-between items-center text-yellow-400">Top 5 Delays: Order Approval <span class="font-bold text-red-500">↑ 15%</span></li>
+                    <li class="flex justify-between items-center text-green-400">Top 5 Growth Accounts: ABC Corp <span class="font-bold text-green-500">↑ 22% ARPU</span></li>
+                    <li class="flex justify-between items-center">Cost-to-Serve Trend: <span class="font-bold text-green-500">↓ 32% YoY</span></li>
+                </ul>
+            </div>
+
+            <!-- Data Source Label -->
+            <p class="md:col-span-4 text-right text-xs text-gray-600 mt-4">Source: CRM · CBS · WFM · HPSM</p>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- 🔷 Page 2: Sales Pipeline Dashboard -->
+        <!-- ========================================================================= -->
+        <div id="sales" class="dashboard-page hidden grid gap-6 md:grid-cols-3" data-tagline="Commercial visibility and channel contribution.">
+            <div class="md:col-span-3 text-center pb-4">
+                <p class="text-xl font-light text-gray-400">Purpose: Show commercial visibility across the funnel.</p>
+                <p class="text-sm font-extrabold text-white mt-2">COMMERCIAL VISIBILITY AND CHANNEL CONTRIBUTION.</p>
+            </div>
+            
+            <!-- Key Metric Row -->
+            <div class="p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-md text-gray-400">Avg Lead Age</h3>
+                <p class="text-4xl font-extrabold text-green-400 mt-1">4.2 Days</p>
+                <p class="text-sm text-gray-500">↓ from 9.8 (Target: 5.0)</p>
+            </div>
+            <div class="p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-md text-gray-400">Win Rate</h3>
+                <p class="text-4xl font-extrabold text-yellow-400 mt-1">46%</p>
+                <p class="text-sm text-gray-500">↑ 3% QoQ</p>
+            </div>
+            <div class="p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-md text-gray-400">Avg Discount</h3>
+                <p class="text-4xl font-extrabold text-red-400 mt-1">12%</p>
+                <p class="text-sm text-gray-500">Target: < 10%</p>
+            </div>
+
+            <!-- Stage Funnel & TTV -->
+            <div class="md:col-span-2 p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-lg font-semibold text-accent-red">Funnel Stage & Weighted Revenue</h3>
+                <div class="mt-4 space-y-3">
+                    <p>Lead (150M) → Qualified (100M, 20%) → Quoted (50M, 50%) → Won (25M, 90%)</p>
+                    <div class="h-2 bg-gray-700 rounded-full">
+                        <div class="h-2 bg-yellow-500 rounded-full w-4/5"></div>
+                    </div>
+                </div>
+                <p class="mt-4 text-sm">Average Time to Value (TTV): <span class="font-bold text-white">45 Days</span></p>
+            </div>
+
+            <!-- Channel Contribution -->
+            <div class="p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-lg font-semibold">Channel Contribution (Revenue)</h3>
+                <ul class="mt-2 text-sm space-y-1">
+                    <li>Direct Sales: <span class="float-right text-white font-bold">55%</span></li>
+                    <li>VCP: <span class="float-right text-white font-bold">25%</span></li>
+                    <li>Marketplace: <span class="float-right text-white font-bold">15%</span></li>
+                    <li>Freelance: <span class="float-right text-white font-bold">5%</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- 🔷 Page 3: Order-to-Activation Dashboard -->
+        <!-- ========================================================================= -->
+        <div id="order-to-activation" class="dashboard-page hidden grid gap-6 md:grid-cols-4" data-tagline="Process efficiency drives the automation story.">
+            <div class="md:col-span-4 text-center pb-4">
+                <p class="text-xl font-light text-gray-400">Purpose: Show process efficiency (the automation story).</p>
+                <p class="text-sm font-extrabold text-white mt-2">PROCESS EFFICIENCY DRIVES THE AUTOMATION STORY.</p>
+            </div>
+
+            <!-- Automation % -->
+            <div class="md:col-span-2 p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-lg font-semibold text-accent-red">Zero-Touch & Approval Rates</h3>
+                <p class="text-4xl font-extrabold text-purple-400 mt-2">78%</p>
+                <p class="text-sm text-gray-400">Zero-Touch Provisioning % (Goal: 85%)</p>
+                <p class="mt-3 text-sm">Orders requiring manual approval: <span class="font-bold text-red-400">12%</span></p>
+                <p class="text-xs text-gray-500">System Tags: CRM → WFM → OSS → CBS</p>
+            </div>
+
+            <!-- SLA Compliance -->
+            <div class="md:col-span-2 p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-lg font-semibold text-accent-red">SLA Compliance & Insight</h3>
+                <p class="text-4xl font-extrabold text-green-400 mt-2">85%</p>
+                <p class="text-sm text-gray-400">Orders Activated Within SLA</p>
+                <div class="mt-3 text-sm">
+                    <p class="font-bold">Insight: "85% of Orders Activated Within SLA."</p>
+                    <p class="text-xs text-red-400">Top Bottleneck: Feasibility Stage (Avg TAT: 1.5 Days)</p>
+                </div>
+            </div>
+
+            <!-- Orders by Status -->
+            <div class="md:col-span-4 p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-lg font-semibold">Orders by Status (Funnel)</h3>
+                <div class="flex justify-between mt-4 text-sm font-bold">
+                    <span>Feasibility (150)</span>
+                    <span>In Approval (30)</span>
+                    <span>Provisioning (50)</span>
+                    <span class="text-green-400">Activated (1200)</span>
+                </div>
+                <div class="h-4 bg-gray-700 rounded-full mt-2">
+                    <div class="h-4 bg-blue-500 rounded-full w-1/12" style="width: 50%;"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ========================================================================= -->
+        <!-- 🔷 Page 4: Billing & Revenue Dashboard -->
+        <!-- ========================================================================= -->
+        <div id="billing-revenue" class="dashboard-page hidden grid gap-6 md:grid-cols-4" data-tagline="From usage to cash — traceable, accurate, on time.">
+            <div class="md:col-span-4 text-center pb-4">
+                <p class="text-xl font-light text-gray-400">Purpose: Monetization visibility and cash flow health.</p>
+                <p class="text-sm font-extrabold text-white mt-2">FROM USAGE TO CASH — TRACEABLE, ACCURATE, ON TIME.</p>
+            </div>
+
+            <!-- Financial Health KPIs -->
+            <div class="p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-md text-gray-400">Billing Accuracy %</h3>
+                <p class="text-4xl font-extrabold text-green-400 mt-1">99.8%</p>
+                <p class="text-sm text-gray-500">Leakage: 0.2%</p>
+            </div>
+            <div class="p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-md text-gray-400">Collection Rate</h3>
+                <p class="text-4xl font-extrabold text-white mt-1">95.1%</p>
+                <p class="text-sm text-gray-500">↑ 1.2% YoY</p>
+            </div>
+            <div class="p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-md text-gray-400">Auto-Debit Share</h3>
+                <p class="text-4xl font-extrabold text-blue-400 mt-1">65%</p>
+                <p class="text-sm text-gray-500">Digital Payment Adoption</p>
+            </div>
+            <div class="p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-md text-gray-400">Avg Invoice Process Time</h3>
+                <p class="text-4xl font-extrabold text-yellow-400 mt-1">0.5 Days</p>
+                <p class="text-sm text-gray-500">Automated Processing</p>
+            </div>
+
+            <!-- Dunning Aging Bar -->
+            <div class="md:col-span-4 p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-lg font-semibold text-accent-red">Dunning Aging Bar</h3>
+                <div class="flex justify-between mt-4 text-xs font-bold text-gray-400">
+                    <span>Current</span>
+                    <span>1-30 Days</span>
+                    <span>31-60 Days</span>
+                    <span>90+ Days</span>
+                </div>
+                <div class="h-4 flex rounded-full mt-2 overflow-hidden">
+                    <div class="h-full bg-green-500" style="width: 70%;"></div>
+                    <div class="h-full bg-yellow-500" style="width: 15%;"></div>
+                    <div class="h-full bg-orange-500" style="width: 10%;"></div>
+                    <div class="h-full bg-red-500" style="width: 5%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- 🔷 Page 5: Self-Care & Customer Experience Dashboard -->
+        <!-- ========================================================================= -->
+        <div id="self-care-cx" class="dashboard-page hidden grid gap-6 md:grid-cols-4" data-tagline="Proving automation & experience outcomes.">
+            <div class="md:col-span-4 text-center pb-4">
+                <p class="text-xl font-light text-gray-400">Purpose: Prove automation & experience outcomes.</p>
+                <p class="text-sm font-extrabold text-white mt-2">PROVING AUTOMATION & EXPERIENCE OUTCOMES.</p>
+            </div>
+
+            <!-- CX Metrics -->
+            <div class="p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-md text-gray-400">NPS Trend</h3>
+                <p class="text-4xl font-extrabold text-white mt-1">45</p>
+                <p class="text-sm text-gray-500">Steady Growth</p>
+            </div>
+            <div class="p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-md text-gray-400">CSAT (Post-Ticket)</h3>
+                <p class="text-4xl font-extrabold text-green-400 mt-1">4.7/5.0</p>
+                <p class="text-sm text-gray-500">FCR: 78%</p>
+            </div>
+            <div class="p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-md text-gray-400">Ticket Deflection</h3>
+                <p class="text-4xl font-extrabold text-purple-400 mt-1">65%</p>
+                <p class="text-sm text-gray-500">Via Self-Care + Chatbot</p>
+            </div>
+            <div class="p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-md text-gray-400">e-Payment Share</h3>
+                <p class="text-4xl font-extrabold text-blue-400 mt-1">88%</p>
+                <p class="text-sm text-gray-500">Digital vs Manual Payments</p>
+            </div>
+
+            <!-- Resolution Split -->
+            <div class="md:col-span-2 p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-lg font-semibold text-accent-red">Resolution Split</h3>
+                <p class="mt-2 text-sm">Chatbot vs Agent Interaction Split:</p>
+                <div class="h-4 flex rounded-full mt-2 overflow-hidden">
+                    <div class="h-full bg-blue-500" style="width: 40%;"></div>
+                    <div class="h-full bg-yellow-500" style="width: 60%;"></div>
+                </div>
+                <p class="text-sm mt-1 text-gray-400">40% Chatbot | 60% Agent</p>
+            </div>
+            
+            <!-- Insight Card -->
+            <div class="md:col-span-2 p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700 flex items-center justify-center">
+                <p class="text-xl font-bold text-center">
+                    🎯 Insight: <span class="text-green-400">65%</span> tickets auto-resolved via Self-Care + Chatbot.
+                </p>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- 🔷 Page 6: Digital Marketplace Dashboard -->
+        <!-- ========================================================================= -->
+        <div id="marketplace" class="dashboard-page hidden grid gap-6 md:grid-cols-4" data-tagline="API is the new sales rep.">
+            <div class="md:col-span-4 text-center pb-4">
+                <p class="text-xl font-light text-gray-400">Purpose: Show platform-driven growth vision.</p>
+                <p class="text-sm font-extrabold text-white mt-2">API IS THE NEW SALES REP.</p>
+            </div>
+
+            <!-- Platform Growth -->
+            <div class="p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-md text-gray-400">Partners Onboarded</h3>
+                <p class="text-4xl font-extrabold text-white mt-1">45</p>
+                <p class="text-sm text-gray-500">↑ 10 QOQ</p>
+            </div>
+            <div class="p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-md text-gray-400">SKUs Live</h3>
+                <p class="text-4xl font-extrabold text-yellow-400 mt-1">120</p>
+                <p class="text-sm text-gray-500">APIs Published: 25</p>
+            </div>
+            <div class="p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-md text-gray-400">Marketplace MRR</h3>
+                <p class="text-4xl font-extrabold text-green-400 mt-1">$1.5M</p>
+                <p class="text-sm text-gray-500">15% of total MRR</p>
+            </div>
+            <div class="p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-md text-gray-400">Cross-sell / Attach-rate</h3>
+                <p class="text-4xl font-extrabold text-blue-400 mt-1">35%</p>
+                <p class="text-sm text-gray-500">Marketplace Customers</p>
+            </div>
+
+            <!-- Partner Performance -->
+            <div class="md:col-span-4 p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-lg font-semibold text-accent-red">Partner Performance & Revenue Share</h3>
+                <div class="flex justify-between mt-3 text-sm">
+                    <p class="text-gray-400">Partner A (Best Performer):</p>
+                    <p class="font-bold text-white">400 Transactions | 12% Revenue Share</p>
+                </div>
+                <div class="flex justify-between mt-2 text-sm">
+                    <p class="text-gray-400">Partner B (New Growth):</p>
+                    <p class="font-bold text-white">150 Transactions | 5% Revenue Share</p>
+                </div>
+                <p class="text-xs text-gray-500 mt-3">Partner SLA Compliance Avg: 99.9%</p>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- 🔷 Page 7: Digital Product & Innovation Dashboard (New) -->
+        <!-- ========================================================================= -->
+        <div id="digital-product" class="dashboard-page hidden grid gap-6 md:grid-cols-3" data-tagline="Innovation at speed: What we build, what we sell, what sticks.">
+            <div class="md:col-span-3 text-center pb-4">
+                <p class="text-xl font-light text-gray-400">Purpose: Track product adoption and innovation velocity.</p>
+                <p class="text-sm font-extrabold text-white mt-2">INNOVATION AT SPEED: WHAT WE BUILD, WHAT WE SELL, WHAT STICKS.</p>
+            </div>
+
+            <!-- Product Performance -->
+            <div class="md:col-span-2 p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-lg font-semibold text-accent-red">Digital Product Performance</h3>
+                <div class="grid grid-cols-2 gap-4 mt-3">
+                    <div class="flex flex-col">
+                        <span class="text-3xl font-bold text-white">45%</span>
+                        <span class="text-sm text-gray-400">Digital Products Share of MRR (↑ 8% QoQ)</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-3xl font-bold text-yellow-400">5.0</span>
+                        <span class="text-sm text-gray-400">Avg. Product Rating (Out of 5.0)</span>
+                    </div>
+                </div>
+                <div class="mt-4 text-sm">
+                    <p class="mt-1">Top Revenue Product: <span class="text-white">SD-WAN Secure Connect</span></p>
+                    <p>Top Adopted Feature: <span class="text-white">Usage API Integration</span></p>
+                </div>
+            </div>
+
+            <!-- Innovation Velocity -->
+            <div class="p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-lg font-semibold">Innovation Velocity</h3>
+                <p class="text-4xl font-extrabold text-purple-400 mt-2">60 Days</p>
+                <p class="text-sm text-gray-400">Avg Time-to-Market (TTM)</p>
+                <p class="mt-3 text-sm">New Product Success Rate: <span class="font-bold text-green-400">75%</span></p>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- 🔷 Page 8: Cost-to-Serve & Automation Impact -->
+        <!-- ========================================================================= -->
+        <div id="cost-to-serve" class="dashboard-page hidden grid gap-6 md:grid-cols-4" data-tagline="Showing business efficiency outcome.">
+            <div class="md:col-span-4 text-center pb-4">
+                <p class="text-xl font-light text-gray-400">Purpose: Show business efficiency outcome and financial savings.</p>
+                <p class="text-sm font-extrabold text-white mt-2">SHOWING BUSINESS EFFICIENCY OUTCOME.</p>
+            </div>
+
+            <!-- Key Impact Metrics -->
+            <div class="p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-md text-gray-400">Cost-to-Serve</h3>
+                <p class="text-4xl font-extrabold text-green-400 mt-1">↓ 32% YoY</p>
+                <p class="text-sm text-gray-500">Key Metric After Automation</p>
+            </div>
+            <div class="p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-md text-gray-400">Automated Orders</h3>
+                <p class="text-4xl font-extrabold text-purple-400 mt-1">88%</p>
+                <p class="text-sm text-gray-500">Digital Channel Adoption</p>
+            </div>
+            <div class="p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-md text-gray-400">Tickets per 100 Services</h3>
+                <p class="text-4xl font-extrabold text-green-400 mt-1">↓ 15%</p>
+                <p class="text-sm text-gray-500">Proactive/Self-Care Impact</p>
+            </div>
+            <div class="p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-md text-gray-400">Savings from Digital</h3>
+                <p class="text-4xl font-extrabold text-white mt-1">$4.2M</p>
+                <p class="text-sm text-gray-500">Annualized Savings</p>
+            </div>
+
+            <!-- Cost Comparison -->
+            <div class="md:col-span-4 p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-lg font-semibold text-accent-red">Avg Cost-per-Order Comparison</h3>
+                <div class="grid grid-cols-2 gap-4 mt-3 text-center">
+                    <div>
+                        <span class="text-3xl font-bold text-yellow-400">$250</span>
+                        <span class="block text-sm text-gray-400">Cost (Before Automation)</span>
+                    </div>
+                    <div>
+                        <span class="text-3xl font-bold text-green-400">$100</span>
+                        <span class="block text-sm text-gray-400">Cost (After Automation)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- 🔷 Page 9: Customer 360 & Alerts -->
+        <!-- ========================================================================= -->
+        <div id="customer-360" class="dashboard-page hidden grid gap-6 md:grid-cols-3" data-tagline="Know every customer before they call.">
+            <div class="md:col-span-3 text-center pb-4">
+                <p class="text-xl font-light text-gray-400">Purpose: Unified customer snapshot for actionable intelligence.</p>
+                <p class="text-sm font-extrabold text-white mt-2">KNOW EVERY CUSTOMER BEFORE THEY CALL.</p>
+            </div>
+
+            <!-- Customer Details Card -->
+            <div class="md:col-span-3 p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-lg font-semibold text-accent-red">ABC Corporation: Customer Snapshot</h3>
+                <div class="grid grid-cols-3 gap-4 mt-3 text-sm">
+                    <div>
+                        <p class="text-gray-400">SLA Status:</p>
+                        <p class="font-bold text-green-400">Gold Tier (99.99%)</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-400">Renewal Date:</p>
+                        <p class="font-bold text-white">Q4 2025</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-400">Churn Risk:</p>
+                        <p class="font-bold bg-yellow-600 text-black px-2 py-0.5 rounded inline-block">AMBER</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Information -->
+            <div class="p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-lg font-semibold">Active Inventory/Usage</h3>
+                <p class="mt-2 text-3xl font-bold">14</p>
+                <p class="text-sm text-gray-400">Active Services</p>
+                <p class="mt-3 text-sm text-red-400">Usage API Chart Trend: High Volatility</p>
+            </div>
+            <div class="p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-lg font-semibold">Tickets & Invoices</h3>
+                <p class="mt-2 text-3xl font-bold">1</p>
+                <p class="text-sm text-gray-400">Active High-Priority Ticket</p>
+                <p class="mt-3 text-sm text-yellow-400">Pending Invoices: 2 (Overdue > 15 Days)</p>
+            </div>
+            <div class="p-5 bg-card-bg rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-lg font-semibold">Automated Alerts</h3>
+                <ul class="mt-2 text-sm space-y-2">
+                    <li class="text-yellow-400">⚠️ Bandwidth 95% utilized (Site B)</li>
+                    <li class="text-red-400">🔴 Invoice overdue > 15 days</li>
+                    <li class="text-green-400">✅ Recent CSAT score: 5/5</li>
+                </ul>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const pages = document.querySelectorAll('.dashboard-page');
+            const mainTitle = document.querySelector('h1');
+
+            // Set initial state for tabs and pages
+            const setActiveTab = (targetId) => {
+                let currentTagline = "";
+
+                // 1. Deactivate all buttons and hide all pages
+                tabButtons.forEach(button => {
+                    button.classList.remove('active-tab', 'bg-accent-red', 'text-white');
+                    button.classList.add('hover:bg-gray-700', 'text-gray-400');
+                });
+                pages.forEach(page => {
+                    page.classList.add('hidden');
+                    if (page.id === targetId) {
+                        currentTagline = page.getAttribute('data-tagline');
+                    }
+                });
+
+                // 2. Activate the selected button
+                const activeButton = document.querySelector(`.tab-button[data-target="${targetId}"]`);
+                if (activeButton) {
+                    activeButton.classList.add('active-tab', 'bg-accent-red', 'text-white');
+                    activeButton.classList.remove('hover:bg-gray-700', 'text-gray-400');
+                }
+
+                // 3. Show the selected page
+                const activePage = document.getElementById(targetId);
+                if (activePage) {
+                    activePage.classList.remove('hidden');
+                }
+
+                // 4. Update the main header tagline (optional but cool infographic feature)
+                // Note: I removed the tagline from the main title area in HTML body and will rely on the page's inner content for the narrative.
+            };
+
+            // Event listeners for buttons
+            tabButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const targetId = e.currentTarget.getAttribute('data-target');
+                    setActiveTab(targetId);
+                });
+            });
+
+            // Set initial active tab (Overview)
+            setActiveTab('overview');
+        });
+    </script>
+</body>
+</html>
