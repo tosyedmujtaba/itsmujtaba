@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Mujtaba © B2B Marketplace – Prototype</title>
+  <style>
+    :root{
+      --bg:#0f1220; --panel:#15182a; --card:#171b2f; --ink:#e8ecff; --muted:#9aa4c7; --brand:#e5001b; --ok:#16c47f; --warn:#ffcc45; --bad:#ff6b6b;
+      --rad:16px; --grid:14px; --shadow:0 10px 30px rgba(0,0,0,.25)
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;font:500 15px/1.5 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--ink);background:radial-gradient(1200px 800px at 80% -10%,#1b1f37 0%,#0f1220 60%)}
+    a{color:#7fb7ff;text-decoration:none}
+
+    header{position:sticky;top:0;z-index:20;background:rgba(15,18,32,.75);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid #232741}
+    .wrap{max-width:1200px;margin:auto;padding:12px 16px}
+    .row{display:flex;align-items:center;gap:12px}
+    .brand{font-weight:800;letter-spacing:.3px}
+    .brand b{color:var(--brand)}
+    nav{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+    .tab{padding:8px 12px;border-radius:999px;border:1px solid #242844;background:#12152a;color:var(--muted);cursor:pointer}
+    .tab.active{background:var(--brand);color:white;border-color:transparent}
+
+    main{max-width:1200px;margin:20px auto 120px;padding:0 16px}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+    .card{background:linear-gradient(180deg,#1a1e34 0%,#15182c 100%);border:1px solid #242844;border-radius:var(--rad);box-shadow:var(--shadow);padding:16px}
+    h1{font-size:24px;margin:8px 0 2px}
+    .sub{color:var(--muted);font-size:13px}
+
+    /* Catalog */
+    .sidebar{grid-column:span 3}
+    .content{grid-column:span 9}
+    .search{display:flex;gap:8px}
+    input[type="search"], select{width:100%;padding:10px 12px;border-radius:10px;border:1px solid #242844;background:#101327;color:var(--ink)}
+    .chk{display:flex;align-items:center;gap:8px;margin:6px 0;color:var(--muted)}
+    .pill{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:999px;background:#101327;border:1px solid #242844;color:var(--muted);font-size:12px}
+    .prod{display:grid;grid-template-columns:120px 1fr auto;gap:12px;padding:14px;border-radius:14px;background:#12152a;border:1px solid #242844;align-items:center}
+    .prod h3{margin:0;font-size:16px}
+    .btn{padding:9px 12px;border-radius:10px;background:var(--brand);border:0;color:white;cursor:pointer}
+    .btn.ghost{background:#12152a;border:1px solid #2b2f4d;color:var(--muted)}
+    .tag{font-size:11px;opacity:.8}
+
+    /* Cart drawer */
+    .drawer{position:fixed;top:0;right:-420px;width:360px;height:100%;background:#11142a;border-left:1px solid #242844;box-shadow:var(--shadow);transition:right .35s ease;z-index:30;padding:16px;display:flex;flex-direction:column}
+    .drawer.open{right:0}
+    .drawer h3{margin:6px 0 10px}
+    .cart-item{display:grid;grid-template-columns:1fr auto;gap:6px;border:1px solid #242844;border-radius:12px;padding:10px;background:#151834;margin-bottom:8px}
+    .sum{margin-top:auto;border-top:1px dashed #2b2f4d;padding-top:10px}
+
+    /* Modal */
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:40}
+    .modal.open{display:flex}
+    .sheet{width:min(720px,90vw);background:#0f1220;border:1px solid #2b2f4d;border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+    .sheet header{position:unset;background:#141736;border:0}
+    .sheet .body{padding:16px}
+    .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .opt{background:#12142a;border:1px solid #2b2f4d;border-radius:12px;padding:10px}
+    .opt label{display:block;color:var(--muted);font-size:12px;margin-bottom:6px}
+    .opt select,.opt input{width:100%;padding:9px;border-radius:10px;background:#0f1220;border:1px solid #2b2f4d;color:var(--ink)}
+
+    /* Tables */
+    table{width:100%;border-collapse:separate;border-spacing:0 8px}
+    th,td{padding:10px 12px}
+    th{color:var(--muted);text-align:left;font-weight:600}
+    tr{background:#12142a;border:1px solid #242844}
+    tr td:first-child,tr th:first-child{border-top-left-radius:10px;border-bottom-left-radius:10px}
+    tr td:last-child,tr th:last-child{border-top-right-radius:10px;border-bottom-right-radius:10px}
+
+    footer{position:fixed;right:16px;bottom:16px;opacity:.65;font-size:12px}
+    @media (max-width:980px){.sidebar{grid-column:span 12}.content{grid-column:span 12}.prod{grid-template-columns:1fr}.drawer{width:100%}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap row">
+      <div class="brand">B2B <b>Digital Marketplace</b></div>
+      <nav id="tabs"></nav>
+      <button class="tab" id="cartBtn">Cart <span id="cartQty" class="pill">0</span></button>
+    </div>
+  </header>
+
+  <main>
+    <!-- CATALOG -->
+    <section class="view" data-view="catalog">
+      <h1>Catalog</h1>
+      <div class="sub">Connectivity · Cloud · Security · Voice/Collab · IoT — unified ordering with a single bill.</div>
+      <div class="grid" style="margin-top:12px">
+        <aside class="sidebar card">
+          <h3>Filters</h3>
+          <div class="search"><input id="q" type="search" placeholder="Search product or partner..."/></div>
+          <div style="margin-top:12px">
+            <div class="chk"><input type="checkbox" data-cat="Connectivity" checked/> Connectivity</div>
+            <div class="chk"><input type="checkbox" data-cat="Cloud" checked/> Cloud</div>
+            <div class="chk"><input type="checkbox" data-cat="Security" checked/> Security</div>
+            <div class="chk"><input type="checkbox" data-cat="Voice" checked/> Voice/Collab</div>
+            <div class="chk"><input type="checkbox" data-cat="IoT" checked/> IoT</div>
+          </div>
+          <div style="margin-top:12px">
+            <label class="sub">Partner</label>
+            <select id="partner">
+              <option value="">All partners</option>
+              <option>Avesta</option>
+              <option>Ooredoo</option>
+              <option>Microsoft</option>
+              <option>Google Cloud</option>
+              <option>Fortinet</option>
+            </select>
+          </div>
+        </aside>
+        <section class="content">
+          <div id="catalog" class="grid" style="grid-template-columns:repeat(2,1fr)"></div>
+        </section>
+      </div>
+    </section>
+
+    <!-- MY SERVICES -->
+    <section class="view" data-view="services" hidden>
+      <h1>My Services</h1>
+      <div class="sub">Live services provisioned through OSS · actions: upgrade/downgrade, pause, ticket.</div>
+      <div class="card" style="margin-top:12px">
+        <table>
+          <thead><tr><th>Service</th><th>Plan</th><th>Status</th><th>MRR</th><th>Actions</th></tr></thead>
+          <tbody id="svcTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ORDERS & BILLING -->
+    <section class="view" data-view="billing" hidden>
+      <h1>Orders & Billing</h1>
+      <div class="grid" style="margin-top:12px">
+        <div class="card" style="grid-column:span 7">
+          <h3>Order Status</h3>
+          <table>
+            <thead><tr><th>Order #</th><th>Item</th><th>Stage</th><th>SLA</th></tr></thead>
+            <tbody id="ordTable"></tbody>
+          </table>
+        </div>
+        <div class="card" style="grid-column:span 5">
+          <h3>Invoices</h3>
+          <table>
+            <thead><tr><th>Invoice #</th><th>Amount</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody id="invTable"></tbody>
+          </table>
+          <div class="sub">Unified billing: core + partner services on a single invoice.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARTNERS -->
+    <section class="view" data-view="partners" hidden>
+      <h1>Partners</h1>
+      <div class="sub">API-based partner onboarding · catalog sync · shared SLAs · revenue share.</div>
+      <div class="grid" style="margin-top:12px" id="partnersGrid"></div>
+    </section>
+
+    <!-- HELP -->
+    <section class="view" data-view="help" hidden>
+      <h1>Help & Support</h1>
+      <div class="grid" style="margin-top:12px">
+        <div class="card" style="grid-column:span 8">
+          <h3>Knowledge Base</h3>
+          <ul>
+            <li>How unified billing works (single bill for all services)</li>
+            <li>Upgrading DIA bandwidth via self‑care</li>
+            <li>Setting up e‑payments and auto‑debit</li>
+            <li>Opening a ticket and tracking SLA</li>
+          </ul>
+        </div>
+        <div class="card" style="grid-column:span 4">
+          <h3>Chatbot</h3>
+          <p class="sub">Ask about orders, invoices, or service status. Tier‑0/Tier‑1 deflection target ≥60%.</p>
+          <button class="btn ghost" onclick="alert('Demo: Chatbot opens here')">Open Chatbot</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- CART DRAWER -->
+  <aside class="drawer" id="drawer">
+    <div class="row" style="justify-content:space-between"><h3>Cart</h3><button class="tab" onclick="drawer(false)">Close</button></div>
+    <div id="cartList"></div>
+    <div class="sum">
+      <div class="row" style="justify-content:space-between"><div class="sub">Est. NRC</div><div id="nrc">$0</div></div>
+      <div class="row" style="justify-content:space-between"><div class="sub">Est. MRC</div><div id="mrc">$0</div></div>
+      <p class="sub">Single bill. Taxes and promos calculated at checkout. Provisioning triggers OSS via API after approval.</p>
+      <button class="btn" onclick="checkout()">Submit Order</button>
+    </div>
+  </aside>
+
+  <!-- CONFIG MODAL -->
+  <div class="modal" id="modal">
+    <div class="sheet">
+      <header class="row wrap" style="justify-content:space-between">
+        <h3 id="cfgTitle">Configure</h3>
+        <button class="tab" onclick="modal(false)">Close</button>
+      </header>
+      <div class="body">
+        <div class="row2">
+          <div class="opt">
+            <label>Bandwidth / Size</label>
+            <select id="optSize"></select>
+          </div>
+          <div class="opt">
+            <label>SLA</label>
+            <select id="optSla">
+              <option value="standard">Standard (99.5%)</option>
+              <option value="premium">Premium (99.9%)</option>
+            </select>
+          </div>
+          <div class="opt">
+            <label>Term</label>
+            <select id="optTerm">
+              <option value="12">12 months</option>
+              <option value="24" selected>24 months</option>
+              <option value="36">36 months</option>
+            </select>
+          </div>
+          <div class="opt">
+            <label>Add‑ons</label>
+            <div class="chk"><input type="checkbox" id="optStatic"/> Static IP ($10 MRC)</div>
+            <div class="chk"><input type="checkbox" id="optRouter"/> Managed Router ($25 MRC)</div>
+          </div>
+        </div>
+        <div class="row" style="justify-content:space-between;margin-top:12px">
+          <div class="sub">Estimated NRC: <b id="cfgNrc">$0</b> · Estimated MRC: <b id="cfgMrc">$0</b></div>
+          <button class="btn" id="addBtn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+<footer style="background: rgba(230,81,0,1); color: white; padding: 6px 0; margin-top: 0;">
+    <div class="max-w-4xl mx-auto px-3 flex flex-col md:flex-row justify-between items-center text-[10px] leading-tight">
+        <div class="text-center md:text-left">
+            <p class="italic font-light mb-1">
+                🧠 Conceptualized & Developed by <span class="font-semibold">Mujtaba Ali</span>
+            </p>
+            <p class="mb-1">
+                This B2B Digital Marketplace is a brainchild of Mujtaba Ali — a digital shopping center capturing customer sales touchpoints. It bridges business intent with enterprise system execution, aligning sales, service, and operational layers into one digital narrative.
+            </p>
+            <p class="mb-1">
+                For <span class="font-semibold">Telecom Operators</span> strengthening their <span class="font-semibold">Lead-to-Cash digital spine</span>, contact me — I take full ownership from concept to deployment, working directly with your BSS, OSS, IT, and CRM teams.
+            </p>
+            <p class="mt-1">
+                📧 Contact: <a href="mailto:immujtaba@gmail.com" class="text-white hover:text-gray-200">immujtaba@gmail.com</a>
+            </p>
+        </div>
+    </div>
+</footer>
+
+  <script>
+    // --- Data (demo) ---
+    const products = [
+      {id:'dia', name:'DIA – Dedicated Internet Access', cat:'Connectivity', partner:'Avesta', sizes:[
+        {label:'50 Mbps', nrc:200, mrc:120}, {label:'100 Mbps', nrc:250, mrc:180}, {label:'200 Mbps', nrc:300, mrc:260}, {label:'500 Mbps', nrc:400, mrc:480}
+      ], blurb:'Guaranteed bandwidth, business SLA, optional static IP & managed router.', tag:'Single bill · OSS auto‑provision'},
+      {id:'mpls', name:'MPLS – Managed WAN', cat:'Connectivity', partner:'Avesta', sizes:[
+        {label:'2 Sites', nrc:600, mrc:380}, {label:'4 Sites', nrc:900, mrc:640}, {label:'8 Sites', nrc:1400, mrc:1100}
+      ], blurb:'Any‑to‑any private connectivity with QoS, secure segmentation.', tag:'Design assist · Orchestrated orders'},
+      {id:'sip', name:'SIP Trunk', cat:'Voice', partner:'Avesta', sizes:[
+        {label:'20 Channels', nrc:150, mrc:120}, {label:'50 Channels', nrc:250, mrc:250}, {label:'100 Channels', nrc:400, mrc:420}
+      ], blurb:'Enterprise voice over IP with elastic channel packs.', tag:'Number porting support'},
+      {id:'wifi', name:'Managed Wi‑Fi', cat:'Security', partner:'Fortinet', sizes:[
+        {label:'Small Site', nrc:120, mrc:90}, {label:'Medium Site', nrc:200, mrc:150}, {label:'Large Site', nrc:340, mrc:260}
+      ], blurb:'Secure Wi‑Fi with policy control and analytics.', tag:'Partner SKU · API billing'},
+      {id:'vm', name:'Cloud VM Pack', cat:'Cloud', partner:'Microsoft', sizes:[
+        {label:'Standard', nrc:0, mrc:120}, {label:'Compute‑Optimized', nrc:0, mrc:220}, {label:'Memory‑Optimized', nrc:0, mrc:260}
+      ], blurb:'Virtual machines with predictable monthly pricing.', tag:'Usage passthrough · Single bill'},
+      {id:'backup', name:'Cloud Backup', cat:'Cloud', partner:'Google Cloud', sizes:[
+        {label:'1 TB', nrc:0, mrc:40}, {label:'5 TB', nrc:0, mrc:160}, {label:'10 TB', nrc:0, mrc:300}
+      ], blurb:'Encrypted backup with lifecycle policy and restore SLA.', tag:'Partner SKU · API status: green'},
+      {id:'cam', name:'IoT – Smart Cameras', cat:'IoT', partner:'Ooredoo', sizes:[
+        {label:'4 Cameras', nrc:300, mrc:140}, {label:'10 Cameras', nrc:700, mrc:320}
+      ], blurb:'Edge analytics, motion alerts, cloud storage options.', tag:'Marketplace pilot'},
+    ]
+
+    const partners = [
+      {name:'Avesta', apis:['Catalog','Order','Billing'], status:'Live'},
+      {name:'Ooredoo', apis:['Catalog','Order'], status:'Pilot'},
+      {name:'Microsoft', apis:['Catalog','Billing'], status:'Live'},
+      {name:'Google Cloud', apis:['Catalog','Billing'], status:'Live'},
+      {name:'Fortinet', apis:['Catalog','Order','Billing'], status:'Pilot'},
+    ]
+
+    const tabs = [
+      {id:'catalog', label:'Catalog'},
+      {id:'services', label:'My Services'},
+      {id:'billing', label:'Orders & Billing'},
+      {id:'partners', label:'Partners'},
+      {id:'help', label:'Help'},
+    ]
+
+    const $ = (q)=>document.querySelector(q)
+    const $$ = (q)=>[...document.querySelectorAll(q)]
+
+    // Nav
+    const nav = document.getElementById('tabs')
+    tabs.forEach((t,i)=>{
+      const b = document.createElement('button')
+      b.className = 'tab' + (i===0?' active':'')
+      b.textContent = t.label
+      b.onclick = ()=>show(t.id, b)
+      nav.appendChild(b)
+    })
+
+    function show(id, btn){
+      $$('.view').forEach(v=>v.hidden = v.dataset.view!==id)
+      $$('.tab').forEach(x=>x.classList.remove('active'))
+      btn?.classList.add('active')
+    }
+
+    // Catalog rendering
+    const catEl = document.getElementById('catalog')
+    function renderCatalog(){
+      const q = $('#q').value.toLowerCase()
+      const allowed = $$('.chk input:checked').map(i=>i.dataset.cat)
+      const partner = $('#partner').value
+      catEl.innerHTML = ''
+      products.filter(p=>
+        (!q || (p.name.toLowerCase().includes(q) || p.blurb.toLowerCase().includes(q))) &&
+        (allowed.includes(p.cat)) &&
+        (!partner || p.partner===partner)
+      ).forEach(p=>{
+        const card = document.createElement('div')
+        card.className='prod'
+        card.innerHTML = `
+          <div>
+            <div class="pill">${p.cat}</div>
+          </div>
+          <div>
+            <h3>${p.name}</h3>
+            <div class="sub">${p.blurb}</div>
+            <div class="tag">${p.tag} · Partner: ${p.partner}</div>
+          </div>
+          <div class="row" style="gap:8px">
+            <button class="btn ghost" onclick="preview('${p.id}')">Details</button>
+            <button class="btn" onclick="configure('${p.id}')">Configure</button>
+          </div>`
+        catEl.appendChild(card)
+      })
+    }
+
+    $$('#q, .chk input, #partner').forEach(el=>el.addEventListener('input', renderCatalog))
+
+    // Modal / Configure
+    let currentProduct = null
+    function configure(id){
+      currentProduct = products.find(p=>p.id===id)
+      $('#cfgTitle').textContent = `Configure – ${currentProduct.name}`
+      const sel = $('#optSize'); sel.innerHTML=''
+      currentProduct.sizes.forEach((s,i)=>{
+        const o = document.createElement('option'); o.textContent = s.label; o.value = i; sel.appendChild(o)
+      })
+      $('#optStatic').checked=false; $('#optRouter').checked=false; $('#optSla').value='standard'; $('#optTerm').value='24'
+      price()
+      $('#addBtn').onclick = addToCart
+      modal(true)
+    }
+
+    function preview(id){
+      const p = products.find(x=>x.id===id)
+      alert(`${p.name}\n\n${p.blurb}\n\nPartner: ${p.partner}\nAPIs: Order/Billing integration via ESB`)
+    }
+
+    function price(){
+      const s = currentProduct.sizes[$('#optSize').value]
+      let nrc = s.nrc; let mrc = s.mrc
+      if($('#optSla').value==='premium'){mrc += Math.round(mrc*0.15)}
+      if($('#optStatic').checked) mrc += 10
+      if($('#optRouter').checked) mrc += 25
+      const term = parseInt($('#optTerm').value,10)
+      if(term===36) mrc = Math.round(mrc*0.9)
+      $('#cfgNrc').textContent = `$${nrc}`
+      $('#cfgMrc').textContent = `$${mrc}`
+      return {nrc,mrc,plan:s.label}
+    }
+
+    ;['optSize','optSla','optStatic','optRouter','optTerm'].forEach(id=>{
+      document.getElementById(id).addEventListener('input', price)
+    })
+
+    const cart=[]
+    function addToCart(){
+      const {nrc,mrc,plan} = price()
+      cart.push({id:currentProduct.id,name:currentProduct.name,plan,nrc,mrc})
+      updateCart()
+      modal(false); drawer(true)
+    }
+
+    function updateCart(){
+      $('#cartQty').textContent = cart.length
+      const list = $('#cartList'); list.innerHTML=''
+      let snrc=0, smrc=0
+      cart.forEach((c,i)=>{
+        snrc += c.nrc; smrc += c.mrc
+        const row = document.createElement('div')
+        row.className='cart-item'
+        row.innerHTML = `<div><b>${c.name}</b><div class="sub">${c.plan}</div></div><div class="row"><div>$${c.mrc}/mo</div><button class="tab" onclick="rem(${i})">Remove</button></div>`
+        list.appendChild(row)
+      })
+      $('#nrc').textContent = `$${snrc}`
+      $('#mrc').textContent = `$${smrc}`
+    }
+    function rem(i){ cart.splice(i,1); updateCart() }
+
+    function checkout(){
+      if(!cart.length) return alert('Cart is empty')
+      // Create demo order rows, invoice rows, and a service entry
+      cart.forEach((c,ix)=>{
+        orders.unshift({id:Date.now()+ix,item:c.name,stage:'In Approval',sla:'T+10d'})
+        invoices.unshift({id:'INV'+(1000+Math.floor(Math.random()*9000)), amount:'$'+(c.mrc+c.nrc), status:'Due'})
+        services.unshift({name:c.name,plan:c.plan,status:'Provisioning',mrc:'$'+c.mrc})
+      })
+      cart.length=0; updateCart(); drawer(false)
+      alert('Order submitted. Workflow will route for approval and trigger OSS provisioning.')
+      renderTables()
+    }
+
+    // Drawer & Modal helpers
+    function drawer(open){ $('#drawer').classList.toggle('open',open) }
+    function modal(open){ $('#modal').classList.toggle('open',open) }
+    document.getElementById('cartBtn').onclick = ()=>drawer(true)
+
+    // Demo tables content
+    const services=[
+      {name:'DIA – Dedicated Internet Access',plan:'100 Mbps',status:'Active',mrc:'$180'},
+      {name:'SIP Trunk',plan:'50 Channels',status:'Active',mrc:'$250'}
+    ]
+    const orders=[
+      {id:'ORD1024',item:'Managed Wi‑Fi – Medium Site',stage:'Provisioning',sla:'T+7d'},
+      {id:'ORD1023',item:'Cloud Backup – 5 TB',stage:'Activated',sla:'Met'},
+    ]
+    const invoices=[
+      {id:'INV7842',amount:'$420',status:'Paid'},
+      {id:'INV7833',amount:'$1,240',status:'Due'}
+    ]
+
+    function renderTables(){
+      const svc = $('#svcTable'); svc.innerHTML=''
+      services.forEach(s=>{
+        const tr = document.createElement('tr')
+        tr.innerHTML = `<td>${s.name}</td><td>${s.plan}</td><td>${s.status}</td><td>${s.mrc}</td><td><button class='tab' onclick=alert('Request upgrade submitted')>Upgrade</button> <button class='tab' onclick=alert('Ticket logged in HPSM')>Open Ticket</button></td>`
+        svc.appendChild(tr)
+      })
+
+      const ord = $('#ordTable'); ord.innerHTML=''
+      orders.forEach(o=>{
+        const tr = document.createElement('tr')
+        tr.innerHTML = `<td>${o.id}</td><td>${o.item}</td><td>${o.stage}</td><td>${o.sla}</td>`
+        ord.appendChild(tr)
+      })
+
+      const inv = $('#invTable'); inv.innerHTML=''
+      invoices.forEach(i=>{
+        const tr = document.createElement('tr')
+        tr.innerHTML = `<td>${i.id}</td><td>${i.amount}</td><td>${i.status}</td><td><button class='btn' onclick=alert('Redirect to payment gateway')>Pay</button></td>`
+        inv.appendChild(tr)
+      })
+
+      const pg = $('#partnersGrid'); pg.innerHTML=''
+      partners.forEach(p=>{
+        const card = document.createElement('div')
+        card.className='card'
+        card.innerHTML = `<h3>${p.name}</h3><div class='sub'>APIs: ${p.apis.join(', ')}</div><div class='pill' style='margin-top:8px'>Status: ${p.status}</div>`
+        pg.appendChild(card)
+      })
+    }
+
+    // Initial render
+    renderCatalog(); renderTables()
+  </script>
+</body>
+</html>
